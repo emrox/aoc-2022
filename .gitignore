@@ -2,3 +2,6 @@
 *.input
 debug
 input
+
+.vscode/
+.devcontainer/
