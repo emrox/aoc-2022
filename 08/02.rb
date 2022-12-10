@@ -11,36 +11,28 @@ trees.each_index do |y|
     y.times do |t|
       view_distances[0] += 1
 
-      if trees[y - t - 1][x] >= trees[y][x]
-        break
-      end
+      break if trees[y - t - 1][x] >= trees[y][x]
     end
 
     # view to bottom
     (trees.length - y - 1).times do |t|
       view_distances[2] += 1
 
-      if trees[y + t + 1][x] >= trees[y][x]
-        break
-      end
+      break if trees[y + t + 1][x] >= trees[y][x]
     end
 
     # view to right
     (trees[0].length - x - 1).times do |t|
       view_distances[1] += 1
 
-      if trees[y][x + t + 1] >= trees[y][x]
-        break
-      end
+      break if trees[y][x + t + 1] >= trees[y][x]
     end
 
     # view to left
     x.times do |t|
       view_distances[3] += 1
 
-      if trees[y][x - t - 1] >= trees[y][x]
-        break
-      end
+      break if trees[y][x - t - 1] >= trees[y][x]
     end
 
     scenic_score = view_distances[0] * view_distances[1] * view_distances[2] * view_distances[3]

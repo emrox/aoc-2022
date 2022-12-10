@@ -11,7 +11,7 @@ input.each do |line|
     (hours.first..hours.last).to_a
   end
 
-  overlapses += 1 if (assignments[0] & assignments[1]).length > 0
+  overlapses += 1 if (assignments[0] & assignments[1]).length.positive?
 end
 
 puts overlapses

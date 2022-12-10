@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-trees = File.read(ARGV.first == 'd' ? 'debug' : 'input').split("\n").map { |l| l.split('').map { |n| [n.to_i, false, false, false, false]  } }
+trees = File.read(ARGV.first == 'd' ? 'debug' : 'input').split("\n").map do |l|
+  l.split('').map do |n|
+    [n.to_i, false, false, false, false]
+  end
+end
 
 # visibility from top
 trees[0].each_index do |x|
   max_col_size = 0
 
   trees.each_index do |y|
-    if y == 0 || trees[y][x][0] > max_col_size
-      trees[y][x][1] = true
-    end
+    trees[y][x][1] = true if y.zero? || trees[y][x][0] > max_col_size
 
-    if trees[y][x][0] > max_col_size
-      max_col_size = trees[y][x][0]
-    end
+    max_col_size = trees[y][x][0] if trees[y][x][0] > max_col_size
   end
 end
 
@@ -22,15 +22,11 @@ trees[0].each_index do |x|
   max_col_size = 0
 
   trees.each_index do |y_o|
-    y = trees.length - 1 - y_o 
+    y = trees.length - 1 - y_o
 
-    if y_o == 0 || trees[y][x][0] > max_col_size
-      trees[y][x][3] = true
-    end
+    trees[y][x][3] = true if y_o.zero? || trees[y][x][0] > max_col_size
 
-    if trees[y][x][0] > max_col_size
-      max_col_size = trees[y][x][0]
-    end
+    max_col_size = trees[y][x][0] if trees[y][x][0] > max_col_size
   end
 end
 
@@ -39,13 +35,9 @@ trees.each_index do |y|
   max_row_size = 0
 
   trees[y].each_index do |x|
-    if x == 0 || trees[y][x][0] > max_row_size
-      trees[y][x][4] = true
-    end
+    trees[y][x][4] = true if x.zero? || trees[y][x][0] > max_row_size
 
-    if trees[y][x][0] > max_row_size
-      max_row_size = trees[y][x][0]
-    end
+    max_row_size = trees[y][x][0] if trees[y][x][0] > max_row_size
   end
 end
 
@@ -54,15 +46,11 @@ trees.each_index do |y|
   max_row_size = 0
 
   trees[y].each_index do |x_o|
-    x = trees[0].length - 1 - x_o 
+    x = trees[0].length - 1 - x_o
 
-    if x_o == 0 || trees[y][x][0] > max_row_size
-      trees[y][x][2] = true
-    end
+    trees[y][x][2] = true if x_o.zero? || trees[y][x][0] > max_row_size
 
-    if trees[y][x][0] > max_row_size
-      max_row_size = trees[y][x][0]
-    end
+    max_row_size = trees[y][x][0] if trees[y][x][0] > max_row_size
   end
 end
 
